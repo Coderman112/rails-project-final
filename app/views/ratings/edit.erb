@@ -1,0 +1,9 @@
+<%=render(partial: "application/errors", locals: {errors: @rating.errors.full_messages})%>
+
+<h3>Editing Rating for <%=@rating.game.name%></h3>
+
+<%= form_for(@rating) do |f|%>
+  <%=f.label "Score"%>
+  <%=f.number_field(:score)%>
+  <%=f.submit("Save")%>
+<%end%>
