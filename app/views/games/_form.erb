@@ -1,0 +1,10 @@
+<%=form_with(model: @game, builder: CustomFormBuilder) do |f|%>
+    <%=f.label("Game Name:") %>
+    <%=f.text_field(:name) %>
+    <%=f.label("Ratings:") %>
+    <%=f.my_fields_for(:ratings, @ratings) do |r| %>
+      <%=r.label "Score"%>
+      <%=r.number_field :score%>
+    <%end%>
+    <%=f.submit "Submit"%>
+<%end%>
