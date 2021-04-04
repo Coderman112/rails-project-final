@@ -32,4 +32,16 @@ class SessionsController < ApplicationController
         end
     end
 
+    def destroy
+        session.clear
+        flash[:message] = "Successfully logged out"
+        redirect_to '/signup'
+    end
+
+    private
+
+    def fb_auth
+        self.request.env['omniauth.auth']
+    end
+
 end
