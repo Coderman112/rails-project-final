@@ -1,0 +1,9 @@
+<h1>Search By Score</h1>
+
+<%= form_with url: ratings_path, method: :get do |f| %>
+  <%=f.text_field :score %>
+  <%=f. submit"Search"%>
+<%end%>
+
+
+<%=render(partial: 'ratings', locals: {ratings: @ratings, index: true})%>
