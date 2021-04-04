@@ -20,3 +20,18 @@ class RatingsController < ApplicationController
             @games = Game.all
         end
     end
+
+    def create
+        @rating = Rating.create(rating_params)
+        @rating.user = current_user
+        if params[:game_id]
+            @rating.game_id = params[:game_id]
+        end
+        if @rating.save
+            flash[:message] = "Successfully created"
+            redirect_to games_path
+        else
+            @games = Game.all
+            render :new
+        end
+    end
