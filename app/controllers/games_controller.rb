@@ -12,3 +12,13 @@ class GamesController < ApplicationController
             @games = user.games
         end
     end
+
+    def show
+    end
+
+    def new
+        @game = Game.new
+        @game.ratings.build(user: current_user)
+        @game.ratings.build(user: current_user)
+        @ratings = @game.ratings.select{|r| r.user_id == current_user.id}
+    end
