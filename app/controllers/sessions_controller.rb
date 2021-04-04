@@ -17,4 +17,19 @@ class SessionsController < ApplicationController
             render :new
         end
     end
+
+    def create_with_fb
+        user = User.find_or_create_by(username: fb_auth['info']['email']) do |u|
+            u.password = 'password'
+        end
+        if user.save
+            session[:user_id] = user.id
+            flash[:message] = "Successfully logged in"
+            redirect_to user_games_path(user)
+        else
+            flash[:message] = "Login failed"
+            redirect_to signup_path
+        end
+    end
+
 end
