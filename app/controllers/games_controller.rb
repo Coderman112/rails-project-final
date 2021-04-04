@@ -22,3 +22,15 @@ class GamesController < ApplicationController
         @game.ratings.build(user: current_user)
         @ratings = @game.ratings.select{|r| r.user_id == current_user.id}
     end
+
+    def create
+        @game = Game.new(game_params)
+        @game.ratings.each {|r| r.user = current_user}
+        if @game.save
+            flash[:message] = "Successfully created"
+            redirect_to game_path(@game)
+        else
+            @ratings = @game.ratings.select{|r| r.user_id == current_user.id}
+            render :new
+        end
+    end
