@@ -5,3 +5,16 @@ class Game < ApplicationRecord
     before_validation :make_title_case
     has_many :ratings
     has_many :users, through: :ratings
+
+
+    def ratings_attributes=(attrs)
+        attrs.values.each do |hash|
+            if hash[:id]
+                r = Rating.find_by(id: hash[:id])
+                r.update(hash)
+            else
+                self.ratings.build(hash)
+            end
+        end
+    end
+    
