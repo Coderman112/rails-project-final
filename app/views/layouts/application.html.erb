@@ -11,6 +11,19 @@
   </head>
 
   <body>
+  <%if current_user %>
+  <%=link_to "All Items", items_path %>
+  <%=link_to "New Item", new_item_path %>
+  <%=link_to "New Measurement", new_measurement_path %>
+  <%=link_to "All Measurements", measurements_path %>
+  <%=link_to "My Items", user_items_path(current_user) %>
+  <%= button_to "Log Out", logout_path, method: :post %>
+  
+  <%else%>
+    <%= link_to "Log In", login_path %>
+    <%= link_to "Sign Up", signup_path %>
+  <%end%>
+  <%=flash[:message]%>
     <%= yield %>
   </body>
 </html>
