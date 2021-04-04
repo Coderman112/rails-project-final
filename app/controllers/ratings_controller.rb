@@ -35,3 +35,19 @@ class RatingsController < ApplicationController
             render :new
         end
     end
+
+    def edit
+        if @rating.user != current_user
+            flash[:message] = "That is not your rating"
+            redirect_to '/ratings'
+        end
+    end
+
+    def update
+
+        if @rating.update(rating_params)
+            redirect_to ratings_path
+        else
+            render :edit
+        end
+    end
