@@ -1,0 +1,8 @@
+
+<h1><%=@item.name%></h1>
+
+
+<%=render partial: 'measurements/measurements', locals: {measurements: @item.measurements, index: false}%><br>
+
+
+<%=link_to "Add Item to Pantry", new_item_measurement_path(@item) %><br><br>
