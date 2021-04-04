@@ -1,0 +1,15 @@
+<%=render(partial: "application/errors", locals: {errors: @rating.errors.full_messages})%>
+
+  <%if @game%>
+    <h3><%=@game.name%></h3>
+  <%end%>
+
+<%= form_for(@rating, url: form_url_helper(@game)) do |f|%>
+  <%=f.label "Score"%>
+  <%=f.number_field(:score)%>
+  <%if !@game%>
+    <%=f.label "Game"%>
+    <%=f.collection_select(:game_id, @games, :id, :name) %>
+  <%end%>
+  <%=f.submit("Save")%>
+<%end%>
