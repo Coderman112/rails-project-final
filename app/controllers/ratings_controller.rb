@@ -9,3 +9,14 @@ class RatingsController < ApplicationController
             @ratings = Rating.score_search(params[:score])
         end
     end
+
+    def new
+        if params[:game_id]
+            @game = Game.find_by(id: params[:game_id])
+            @rating = @game.ratings.build
+            @games = Game.all
+        else
+            @rating = Rating.new
+            @games = Game.all
+        end
+    end
