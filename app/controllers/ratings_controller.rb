@@ -51,3 +51,16 @@ class RatingsController < ApplicationController
             render :edit
         end
     end
+
+
+    private
+
+    def rating_params
+        params.require(:rating).permit(:score, :game_id)
+    end
+
+    def set_rating
+        @rating = Rating.find_by(id: params[:id])
+    end
+
+end
