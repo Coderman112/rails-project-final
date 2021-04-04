@@ -17,4 +17,17 @@ class Game < ApplicationRecord
             end
         end
     end
-    
+
+
+
+    def is_title_case
+        if self.name != self.name.titlecase
+            self.errors.add(:name, "must be titlecase")
+        end
+    end
+
+    def make_title_case
+        self.name = self.name.titlecase
+    end
+
+end
