@@ -34,3 +34,24 @@ class GamesController < ApplicationController
             render :new
         end
     end
+
+
+    def destroy
+        @game.delete
+        flash[:message] = "Successfully deleted"
+        redirect_to games_path
+    end
+
+
+    private
+
+        def game_params
+            params.require(:game).permit(:name, ratings_attributes: [:score, :user_id, :id])
+        end
+
+        def set_game
+            @game = Game.find_by(id: params[:id])
+        end
+
+
+end
