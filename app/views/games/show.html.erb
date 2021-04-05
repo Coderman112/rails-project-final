@@ -1,8 +1,8 @@
 
-<h1><%=@item.name%></h1>
+<h1><%=@game.name%></h1>
 
 
-<%=render partial: 'measurements/measurements', locals: {measurements: @item.measurements, index: false}%><br>
+<%=render partial: 'ratings/ratings', locals: {ratings: @game.ratings, index: false}%><br>
 
 
-<%=link_to "Add Item to Pantry", new_item_measurement_path(@item) %><br><br>
+<%=link_to "Add Game to List", new_game_rating_path(@game) %><br><br>

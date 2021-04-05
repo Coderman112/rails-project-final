@@ -1,4 +1,4 @@
 
 <%ratings.each do |r|%>
-    <li><%=r.score%> <%=show_game_name(r, index)%> <%= (r.user == current_user) ? (link_to "Edit", edit_rating_path(r)) : (nil) %></li>
+    <li><%=r.score%> <%=show_game_name(r, index)%> <%= (r.user == current_user) ? (link_to "Edit", edit_user_path(r)) : (nil) %></li>
 <%end%>

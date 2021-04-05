@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         if @user.save
             session[:user_id] = @user.id
             flash[:message] = "Successfully created account!"
-            redirect_to user_items_path(@user)
+            redirect_to user_games_path(@user)
         else
             render :new
         end
